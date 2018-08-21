@@ -1,8 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.6
 import os
 import sys
 
 if __name__ == "__main__":
+    
+    if sys.argv[1]=="setKey":
+       import random
+       secretKey=''.join(random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50))
+       file=open(os.getcwd()+"/monitoring/settings.py","r")
+       data=file.read()
+       file.close()
+       data=data.replace('{{setKey}}',secretKey)
+       file1=open(os.getcwd()+"/monitoring/settings.py","w")
+       file1.write(data)
+       file1.close()      
+       sys.exit() 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "monitoring.settings")
     try:
         from django.core.management import execute_from_command_line
