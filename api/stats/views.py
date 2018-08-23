@@ -36,3 +36,22 @@ def os_view(request, ipaddress, format=None):
         "error" : error
     }
     return Response(content)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def filesystem_view(request, ipaddress, format=None):
+    ip_list = list(ServerDetail.objects.filter(user=request.user).values("ipaddress"))
+    ip_list=[ip['ipaddress'] for ip in ip_list]
+    if ipaddress in ip_list:
+        data=list(ServerDetail.objects.filter(ipaddress=ipaddress).values("sshKey","server_user"))[0]
+    output,error=ssh(ipaddress=ipaddress,key=data['sshKey'],user=data['server_user'],command="df -aPh |sed -e 's/Mounted on/MountedOn/g' |  column -t")
+    print (output)
+    output=[item.split() for item in output]
+    print (output)
+    output=[dict(zip(output[0],output[item])) for item in range(1,len(output))]
+    content = {
+        "output": output,
+        "error" : error
+    }
+    return Response(content)
