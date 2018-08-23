@@ -23,6 +23,8 @@ from .app_settings import (
 from .models import TokenModel
 from .utils import jwt_encode
 
+
+
 sensitive_post_parameters_m = method_decorator(
     sensitive_post_parameters(
         'password', 'old_password', 'new_password1', 'new_password2'

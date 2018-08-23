@@ -1,0 +1,6 @@
+rm api/migrations/ -rf
+rm api/__pycache__/ -rf
+rm api/server/__pycache__/ -rf
+rm api/stats/__pycache__/ -rf
+rm api/registration/__pycache__/ -rf
+rm monitoring/__pycache__/ -rf

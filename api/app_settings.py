@@ -8,6 +8,7 @@ from api.serializers import (
     PasswordResetSerializer as DefaultPasswordResetSerializer,
     PasswordResetConfirmSerializer as DefaultPasswordResetConfirmSerializer,
     PasswordChangeSerializer as DefaultPasswordChangeSerializer)
+
 from .utils import import_callable, default_create_token
 
 create_token = import_callable(

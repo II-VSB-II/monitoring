@@ -25,7 +25,7 @@ SECRET_KEY = 'b-&g27nb6eg%g8-544qk0p*6%$qqetma_@u6-j1kt&xh+brdgw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'api.registration',
+   'allauth.socialaccount'
 ]
 
 SITE_ID = 1
@@ -138,4 +139,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated', )
-}
+   }
+
+
